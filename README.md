@@ -1,3 +1,11 @@
 
+### bugs
+1) input validation is not proper for ex. input fields email in signup form can take any random string 
 
-video time - 35:15
+
+
+
+
+
+User verification email (4th) <br>
+video time - just started
