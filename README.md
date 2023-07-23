@@ -8,4 +8,4 @@
 
 
 User verification email (4th) <br>
-video time - just started
+video time - 53:14
