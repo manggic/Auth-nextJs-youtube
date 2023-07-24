@@ -36,7 +36,7 @@ export async function POST(request: Request) {
     // throw msg if password doesn't match
     if (!isPasswordValid) {
       return NextResponse.json({
-        msg: "Your password is incorrect",
+        msg: "Password is incorrect",
         success: false,
       });
     }

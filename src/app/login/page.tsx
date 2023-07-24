@@ -16,9 +16,23 @@ export default function LoginPage() {
     password: "",
   });
 
+  const validateEmail = (email: string) => {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/g;
+
+    if (regex.test(email)) {
+      return true;
+    }
+    return false;
+  };
+
   const onLogin = async () => {
     try {
       let { email, password } = user || {};
+
+      if (!validateEmail(email)) {
+        toast.error("pls provide correct email");
+        return
+      }
       if (!email || !password) {
         toast.error("pls enter details");
       } else {
@@ -78,6 +92,16 @@ export default function LoginPage() {
       >
         Login
       </button>
+
+      <Link
+        className="py-2"
+        href={{
+          pathname: "/forgotpasswordemail",
+          query: { email: user.email },
+        }}
+      >
+        forgot password
+      </Link>
 
       <Link className="text-xs py-4 text-amber-300" href="/signup">
         Sign up
