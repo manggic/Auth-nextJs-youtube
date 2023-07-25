@@ -12,6 +12,8 @@ const {
   DOMAIN,
   USER_EMAIL,
   USER_PASS,
+  PORT,
+  HOST
 } = process.env || {};
 
 connect();
@@ -35,8 +37,8 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
     }
 
     var transport = nodemailer.createTransport({
-      host: "smtp.gmail.com" || MAILTRAP_HOST,
-      port: 465 || MAILTRAP_PORT,
+      host: HOST,
+      port: PORT,
       secure: true,
       auth: {
         user: USER_EMAIL || MAILTRAP_USERNAME,
