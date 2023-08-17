@@ -6,32 +6,29 @@ import { NextResponse } from "next/server";
 connect();
 
 export async function POST(request: Request) {
-  const reqBody = await request.json();
+  try {
+    const reqBody = await request.json();
 
-  const user = await User.findOne({ email: reqBody.email });
+    const user = await User.findOne({ email: reqBody.email });
 
-  if (!user) {
-    return NextResponse.json({ success: false, msg: "user does not exist" });
-  }
-  if (!user.isVerified) {
-    return NextResponse.json({
-      success: false,
-      msg: "user email is not verified",
+    if (!user) {
+      return NextResponse.json({ success: false, msg: "user does not exist" });
+    }
+    if (!user.isVerified) {
+      return NextResponse.json({
+        success: false,
+        msg: "user email is not verified",
+      });
+    }
+
+    const res = await sendEmail({
+      email: reqBody.email,
+      emailType: "RESET",
+      userId: user._id,
     });
-  }
 
-  const res = await sendEmail({
-    email: reqBody.email,
-    emailType: "RESET",
-    userId: user._id,
-  });
-
-  console.log('res ?????',res);
-  
-
-  if (res.success) {
     return NextResponse.json({ success: true, msg: res, data: reqBody });
-  } else {
-    return NextResponse.json({ success: false, msg: res.msg, data: reqBody });
+  } catch (error) {
+    return NextResponse.json({ success: false, msg: 'failed' });
   }
 }

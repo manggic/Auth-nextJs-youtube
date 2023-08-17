@@ -60,7 +60,25 @@ export default function LoginPage() {
       <h1 className="py-2">Log In</h1>
 
       <div className="">
-        {fields.map((ele, index) => {
+      <label htmlFor="email">email</label>
+        <input 
+        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+            id="email"
+            type="text"
+            value={user.email}
+            onChange={(e) => setUser({...user, email: e.target.value})}
+            placeholder="email"
+            />
+        <label htmlFor="password">password</label>
+        <input 
+        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+            id="password"
+            type="password"
+            value={user.password}
+            onChange={(e) => setUser({...user, password: e.target.value})}
+            placeholder="password"
+            />
+        {/* {fields.map((ele, index) => {
           return (
             <div className="" key={index}>
               <label
@@ -84,7 +102,7 @@ export default function LoginPage() {
               />
             </div>
           );
-        })}
+        })} */}
       </div>
       <button
         onClick={() => onLogin()}

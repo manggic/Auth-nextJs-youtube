@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose,{ConnectOptions} from "mongoose";
 
 const { MONGO_URL } = process.env;
 
@@ -13,7 +13,7 @@ export const connect = async () => {
        mongoURL,{
         useNewUrlParser: true,
         useUnifiedTopology: true,
-      }
+      } as ConnectOptions
     );
     mongoose.connection.on('connected',()=>{
         console.log('MONGO_DB CONNECTED');

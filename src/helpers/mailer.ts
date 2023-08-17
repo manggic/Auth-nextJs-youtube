@@ -13,7 +13,7 @@ const {
   USER_EMAIL,
   USER_PASS,
   PORT,
-  HOST
+  HOST,
 } = process.env || {};
 
 connect();
@@ -37,12 +37,12 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
     }
 
     var transport = nodemailer.createTransport({
-      host: HOST,
-      port: PORT,
+      host: HOST as string,
+      port: parseInt(PORT as string),
       secure: true,
       auth: {
-        user: USER_EMAIL,
-        pass: USER_PASS,
+        user: USER_EMAIL as string,
+        pass: USER_PASS as string,
       },
     });
 
@@ -60,7 +60,7 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
     };
 
     const mailRes = await transport.sendMail(mailOptions);
-    return {success:true, msg:'successfully sent email', data:mailRes}
+    return { success: true, msg: "successfully sent email", data: mailRes };
     return mailRes;
   } catch (error: any) {
     console.log("sendEmail ERROR", error.message);
