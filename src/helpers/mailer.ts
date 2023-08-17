@@ -41,8 +41,8 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
       port: PORT,
       secure: true,
       auth: {
-        user: USER_EMAIL || MAILTRAP_USERNAME,
-        pass: USER_PASS || MAILTRAP_PASSWORD,
+        user: USER_EMAIL,
+        pass: USER_PASS,
       },
     });
 

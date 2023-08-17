@@ -1,11 +1,11 @@
 import { connect } from "@/db/config";
 
 import User from "@/models/UserModel";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 connect();
 
-export async function POST(request: Response) {
+export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
 
